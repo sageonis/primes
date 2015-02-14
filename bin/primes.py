@@ -1,39 +1,72 @@
 #!/usr/bin/env python
+import sys
 import argparse
 
 
 class Primes(object):
 
-    def __init__(self, start, finish, howmany):
+    def __init__(self, start, howmany, finish):
+        if not start == None and start < 2:
+            sys.exit("If passing start value, must be >= first prime number of 2.")
+
         if not start == None:
             self.start = start
         else:
             self.start = 2
 
+        if not howmany == None and howmany < 1:
+            sys.exit("If passing howmany value, must be >= 1.")
+
+        if not howmany == None and howmany > 0:
+            self.howmany = howmany
+        else:
+            self.howmany = None
+
+        if not finish == None and finish < 2:
+            sys.exit("If passing finish value, must be >= first prime number of 2.")
+
         if not finish == None:
             self.finish = finish
         else:
-            self.finish = 1000
+            if not howmany == None:
+                self.finish = None
+            else:
+                self.finish = 1000
 
-        self.howmany = howmany
+
         self.primes = []
         return
 
     def run(self):
         num = self.start
-        while num <= self.finish:
-            div = 2
-            stat = True
-            while div < num:
-                if num % div == 0:
-                    stat = False
-                div += 1
-            if stat == True:
-                self.primes.append(num)
-                if not self.howmany == None:
-                    if len(self.primes) == self.howmany:
-                        return
-            num += 1
+
+        if not self.finish == None:
+            while num <= self.finish:
+                div = 2
+                stat = True
+                while div < num:
+                    if num % div == 0:
+                        stat = False
+                    div += 1
+                if stat == True:
+                    self.primes.append(num)
+                    if not self.howmany == None:
+                        if len(self.primes) == self.howmany:
+                            return
+                num += 1
+
+        else:
+            while len(self.primes) < self.howmany:
+                div = 2
+                stat = True
+                while div < num:
+                    if num % div == 0:
+                        stat = False
+                    div += 1
+                if stat == True:
+                    self.primes.append(num)
+                num += 1
+
         return
 
     def out(self):
@@ -55,7 +88,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     primes = Primes(start=args.start,
-                    finish=args.finish,
-                    howmany=args.howmany)
+                    howmany=args.howmany,
+                    finish=args.finish)
     primes.run()
     primes.out()
