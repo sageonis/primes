@@ -33,7 +33,6 @@ class Primes(object):
             else:
                 self.finish = 1000
 
-
         self.primes = []
         return
 
