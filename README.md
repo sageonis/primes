@@ -1,4 +1,4 @@
-# Primes
+# Prime Number Generator
 Python script for printing out prime numbers.
 
 Install/Run Steps:
