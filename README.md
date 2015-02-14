@@ -12,6 +12,7 @@ Steps:
 Note: If both (-f | --finish) and (-m | --howmany) are passed, it script will terminate at whichever limit is reached first.
 
 Sample Commands from project scope:
+
 | Command | Description |
 |:--------|:------------|
 | ```./bin/python.py``` | Returns all primes from 0-1000 by default |
