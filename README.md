@@ -4,7 +4,10 @@ Python script for printing out prime numbers.
 Steps:
 - Install requirements/system.txt (sudo apt-get install python), etc
 - Install needed python modules (sudo pip install -r requirements/python.txt)
-- Run script (./bin/primes.py), optionally with option (-f | --finish) to pass a custom upper limit integer; option (-s | --start) to pass a custom starting integer; option (-m | --howmany) to pass number of primes desired returned.
+- Run script (./bin/primes.py), optionally with:
+  - (-f | --finish) to pass a custom upper limit integer
+  - (-s | --start) to pass a custom starting integer
+  - (-m | --howmany) to pass number of primes desired returned.
 
 Note: If both (-f | --finish) and (-m | --howmany) are passed, it script will terminate at whichever limit is reached first.
 
