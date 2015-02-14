@@ -1,4 +1,4 @@
-# todo
+# ToDo:
 Some features to add in future:
 - Output primes as they are found.
 - Output time taken perform query.
