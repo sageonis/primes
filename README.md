@@ -1,6 +1,8 @@
 # Prime Number Generator
 Python script for printing out prime numbers.
 
+Python 2.7.6 required. Tested running in Ubuntu 14.04.
+
 Install/Run Steps:
 - Install requirements/system.txt (sudo apt-get install python), etc
 - Install needed python modules (sudo pip install -r requirements/python.txt)
