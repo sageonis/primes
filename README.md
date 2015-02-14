@@ -1,4 +1,4 @@
-# primes
+# Primes
 Python script for printing out prime numbers.
 
 Install/Run Steps:
