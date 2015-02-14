@@ -19,3 +19,4 @@ Sample Commands from project scope:
 | ```./bin/python.py -f 10000``` | Returns all primes from 0 - 10000 |
 | ```./bin/python.py -s 50 -f 100``` | Returns all primes between 50 - 100 |
 | ```./bin/python.py -m 1000``` | Returns first 1000 prime numbers starting from 0 |
+| ```./bin/python.py -m 1000 > samples/first1k.txt``` | Returns first 1000 prime numbers into output file. |
