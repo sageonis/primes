@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import argparse
 
+
 class Primes(object):
 
     def __init__(self, limit):
