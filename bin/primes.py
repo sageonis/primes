@@ -1,18 +1,27 @@
 #!/usr/bin/env python
 import argparse
 
+
 class Primes(object):
 
-    def __init__(self, limit):
-        if not limit == None:
-            self.limit = limit
+    def __init__(self, start, finish, howmany):
+        if not start == None:
+            self.start = start
         else:
-            self.limit = 100000
+            self.start = 2
+
+        if not finish == None:
+            self.finish = finish
+        else:
+            self.finish = 1000
+
+        self.howmany = howmany
+        self.primes = []
         return
 
     def run(self):
-        num = 2
-        while num <= self.limit:
+        num = self.start
+        while num <= self.finish:
             div = 2
             stat = True
             while div < num:
@@ -20,13 +29,33 @@ class Primes(object):
                     stat = False
                 div += 1
             if stat == True:
-                print num
+                self.primes.append(num)
+                if not self.howmany == None:
+                    if len(self.primes) == self.howmany:
+                        return
             num += 1
+        return
+
+    def out(self):
+        start = 0
+        finish = 15
+        col_width = max(len(str(p)) for p in self.primes) + 2
+        while start < len(self.primes):
+            print "".join(str(p).ljust(col_width) for p in self.primes[start:finish])
+            start += 15
+            finish += 15
         return
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-l", "--limit", type=int, help="Override default Limit of 100,000.")
+    parser.add_argument("-s", "--start", type=int, help="Start counting primes from this number. Default is first prime 2.")
+    parser.add_argument("-f", "--finish", type=int, help="This is upper limit for counting primes, ie primes whose value is <= this limit. Default is 1,000.")
+    parser.add_argument("-m", "--howmany", type=int, help="How many primes do you want? (If both -f and -n are passed, whichever limit is reached first.)")
     args = parser.parse_args()
-    Primes(limit=args.limit).run()
+
+    primes = Primes(start=args.start,
+                    finish=args.finish,
+                    howmany=args.howmany)
+    primes.run()
+    primes.out()
