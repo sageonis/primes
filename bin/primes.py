@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 import sys
+import time
 import argparse
 
 
 class Primes(object):
 
     def __init__(self, start, howmany, finish):
+        self.start_time = time.time()
+
         if not start == None and start < 2:
             sys.exit("If passing start value, must be >= first prime number of 2.")
 
@@ -78,6 +81,12 @@ class Primes(object):
             finish += 15
         return
 
+    def get_elapsed(self):
+        finish = time.time()
+        elapsed = (finish - self.start_time)
+        print 'Elapsed Time: {0} seconds'.format(elapsed)
+        return
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -91,3 +100,4 @@ if __name__ == "__main__":
                     finish=args.finish)
     primes.run()
     primes.out()
+    primes.get_elapsed()
