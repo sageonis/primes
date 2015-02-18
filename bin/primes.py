@@ -4,8 +4,11 @@ import sys
 import time
 import dotenv
 import argparse
+import logging
+import logging.config
 
 dotenv.read_dotenv(os.path.dirname(os.path.realpath(__file__)) + '/../.env')
+logging.config.fileConfig('logging.conf', defaults={'logfilename': 'logs/primes.log'})
 
 if os.environ['START']:
     START = int(os.environ['START'])
@@ -37,9 +40,11 @@ class Primes(object):
 
     def __init__(self, start, howmany, finish):
         self.start_time = time.time()
+        self.logger = logging.getLogger('primes')
 
         if not start == None and start < START:
-            sys.exit("If passing start value, must be >= first prime number of 2.")
+            self.logger.error("If passing start value, must be >= first prime number of 2.")
+            sys.exit(0)
 
         if not start == None:
             self.start = start
@@ -47,7 +52,8 @@ class Primes(object):
             self.start = START
 
         if not howmany == None and howmany < 1:
-            sys.exit("If passing howmany value, must be >= 1.")
+            self.logger.error("If passing howmany value, must be >= 1.")
+            sys.exit(0)
 
         if not howmany == None and howmany > 0:
             self.howmany = howmany
@@ -55,7 +61,8 @@ class Primes(object):
             self.howmany = HOW_MANY
 
         if not finish == None and finish < START:
-            sys.exit("If passing finish value, must be >= first prime number of 2.")
+            self.logger.error("If passing finish value, must be >= first prime number of 2.")
+            sys.exit(0)
 
         if not finish == None:
             self.finish = finish
@@ -105,7 +112,9 @@ class Primes(object):
         finish = HOW_MANY_PER_ROW
         col_width = max(len(str(p)) for p in self.primes) + COLUMN_PADDING
         while start < len(self.primes):
-            print "".join(str(p).ljust(col_width) for p in self.primes[start:finish])
+            primes_row = "".join(str(p).ljust(col_width) for p in self.primes[start:finish])
+            print primes_row
+            self.logger.info(primes_row)
             start += HOW_MANY_PER_ROW
             finish += HOW_MANY_PER_ROW
         return
@@ -113,7 +122,9 @@ class Primes(object):
     def get_elapsed(self):
         finish = time.time()
         elapsed = (finish - self.start_time)
-        print 'Elapsed Time: {0} seconds'.format(elapsed)
+        elapsed_str = 'Elapsed Time: {0} seconds'.format(elapsed)
+        print elapsed_str
+        self.logger.info(elapsed_str)
         return
 
 
