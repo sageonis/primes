@@ -6,7 +6,7 @@ Python 2.7.6 required. Tested running on Ubuntu 14.04.
 Install/Run Steps:
 - Install requirements/system.txt (sudo apt-get install python), etc
 - Install needed python modules (sudo pip install -r requirements/python.txt)
-- Create a a project .env file. Simply ```cp dotenv_example .env``` and set any desired defaults.
+- Create a project .env file. Simply ```cp dotenv_example .env``` and set any desired defaults.
 - Create a logs directory, ```mkdir logs``` in root path of project.
 - Run script (./bin/primes.py), optionally with:
   - (-f | --finish) to pass a custom upper limit integer
